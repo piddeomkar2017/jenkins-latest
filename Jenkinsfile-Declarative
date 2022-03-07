@@ -1,8 +1,8 @@
 pipeline{
   agent any
   environment{
-    PATH="/opt/maven/bin:$PATH"
-    imageName="omkarpidde/my-image"
+    PATH = "/opt/maven/bin:$PATH"
+    imageName = "omkarpidde/my-image"
   }
   stages{
     stage("Git Checkout"){
