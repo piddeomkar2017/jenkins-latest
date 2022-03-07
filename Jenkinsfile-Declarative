@@ -2,20 +2,22 @@ pipeline{
   agent any
   environment{
     PATH="/opt/maven/bin:$PATH"
+    imageName="omkarpidde/my-image"
   }
   stages{
-    stage("Hello World"){
+    stage("Git Checkout"){
       steps{
-        sh """
-          echo "Hello Wolrd from Omkar"
-          whoami
-          pwd
-        """
+        sh 'git branch: 'main', url: 'https://github.com/piddeomkar2017/jenkins-latest.git''
       }
     }
     stage("Build"){
       steps{
         sh 'mvn clean install'
+      }
+    }
+    stage("Build Docker image"){
+      steps{
+        sh 'docker build $imageName .'
       }
     }
   }
